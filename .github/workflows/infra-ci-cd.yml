@@ -53,7 +53,7 @@ jobs:
       id: tflint
       run: tflint -f compact
 
-  terraform-plan:
+terraform-plan:
     name: 'Terraform Plan'
     runs-on: ubuntu-latest
     env:
