@@ -1,13 +1,6 @@
 terraform {
   required_version = "~> 1.5"
 
-  backend "azurerm" {
-    resource_group_name  = "yuan0037-Default-WestUS3-rg"
-    storage_account_name = "yuan0037tfstorage"
-    container_name       = "tfstate"
-    key                  = "dev.terraform.tfstate"
-  }
-
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
@@ -30,19 +23,13 @@ provider "cloudinit" {
   # Configuration options
 }
 
-variable "resource_prefix" {
-  description = "A prefix to add to all resources"
-  type        = string
-  default     = "yuan0037-lab12"
-}
-
 resource "azurerm_resource_group" "rg" {
   name     = "yuan0037-githubactions-rg"
   location = "canadacentral"
 }
 
 resource "azurerm_storage_account" "backendstate" {
-  name                     = "yuan0037githubactions"
+  name                     = "yuan0037githubactions01"
   resource_group_name      = azurerm_resource_group.rg.name
   location                 = azurerm_resource_group.rg.location
   account_tier             = "Standard"
@@ -58,4 +45,8 @@ resource "azurerm_storage_container" "backendstate" {
   name                  = "tfstate"
   storage_account_name  = azurerm_storage_account.backendstate.name
   container_access_type = "private"
+  # Provisioner to set ARM_ACCESS_KEY environment variable after resource creation
+    provisioner "local-exec" {
+        command = "export ARM_ACCESS_KEY=$(terraform output -raw primary_access_key)"
+    }
 }

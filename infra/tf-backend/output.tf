@@ -11,6 +11,6 @@ output "container_name" {
 }
 
 output "primary_access_key" {
-  value = azurerm_storage_account.backendstate.primary_access_key
+  value     = azurerm_storage_account.backendstate.primary_access_key
   sensitive = true
 }
