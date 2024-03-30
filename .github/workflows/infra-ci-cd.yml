@@ -53,8 +53,7 @@ jobs:
       id: tflint
       run: tflint -f compact
 
-terraform-plan:
-    name: 'Terraform Plan'
+  terraform-plan:
     runs-on: ubuntu-latest
     env:
         #this is needed since we are running terraform with read-only permissions
