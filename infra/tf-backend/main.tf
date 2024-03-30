@@ -46,7 +46,7 @@ resource "azurerm_storage_container" "backendstate" {
   storage_account_name  = azurerm_storage_account.backendstate.name
   container_access_type = "private"
   # Provisioner to set ARM_ACCESS_KEY environment variable after resource creation
-    provisioner "local-exec" {
-        command = "export ARM_ACCESS_KEY=$(terraform output -raw primary_access_key)"
-    }
+  provisioner "local-exec" {
+    command = "export ARM_ACCESS_KEY=$(terraform output -raw primary_access_key)"
+  }
 }
