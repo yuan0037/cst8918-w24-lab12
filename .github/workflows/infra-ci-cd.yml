@@ -173,7 +173,8 @@ jobs:
       uses: actions/download-artifact@v4
       with:
         name: tfplan
-
+    - name: Print Current Execution Folder
+      run: pwd
     # Terraform Apply
     - name: Terraform Apply
       run: terraform apply -auto-approve tfplan
