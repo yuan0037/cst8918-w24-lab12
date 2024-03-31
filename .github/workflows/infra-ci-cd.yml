@@ -177,7 +177,4 @@ jobs:
       run: pwd
     # Terraform Apply
     - name: Terraform Apply
-      run: terraform apply -auto-approve tfplan
-
-    - name: Print Current Execution Folder
-      run: pwd
+      run: terraform apply -auto-approve ../../tfplan
