@@ -3,7 +3,8 @@ name: 'Terraform Configuration Drift Detection'
 on:
   workflow_dispatch: 
   schedule:
-    - cron: '41 3 * * *' # runs nightly at 3:41 am
+    - cron: '*/5 * * * *' # runs every 5 minutes
+    # - cron: '41 3 * * *' # runs nightly at 3:41 am
 
 #Special permissions required for OIDC authentication
 permissions:
@@ -18,6 +19,10 @@ env:
   ARM_TENANT_ID: "${{ secrets.AZURE_TENANT_ID }}"
   # This one is for the storage account that stores the terraform state
   ARM_ACCESS_KEY: "${{ secrets.ARM_ACCESS_KEY }}"
+
+defaults:
+  run:
+    working-directory: ./infra/tf-app  
 
 jobs:
   terraform-plan:
@@ -66,7 +71,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: tfplan
-        path: tfplan
+        path: infra/tf-app/tfplan
         
     # Create string output of Terraform Plan
     - name: Create String Output
