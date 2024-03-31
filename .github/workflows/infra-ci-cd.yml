@@ -98,6 +98,12 @@ jobs:
         else 
             exit 0
         fi
+    # Additional debugging step
+    - name: Debug Plan File
+      run: |
+        ls -la
+        find . -name "tfplan"
+
     # Save plan to artifacts  
     - name: Publish Terraform Plan
       uses: actions/upload-artifact@v4
