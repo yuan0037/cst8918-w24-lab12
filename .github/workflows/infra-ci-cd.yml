@@ -101,8 +101,9 @@ jobs:
     # Additional debugging step
     - name: Debug Plan File
       run: |
+        pwd
         ls -la
-        find . -name "tfplan"
+        
 
     # Save plan to artifacts  
     - name: Publish Terraform Plan
