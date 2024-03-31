@@ -5,6 +5,8 @@
 * Yingda Zhang zhan0865 [Github Profile](https://github.com/Yzhan498)
 
 PR Invoked Action
+
+![PR Creation](/screenshots/pr_creation.png)
 ![PR Invoked](/screenshots/pr_invoked.png)
 
 Merge Invoked Action
